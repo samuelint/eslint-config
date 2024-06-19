@@ -1,0 +1,76 @@
+const max_len = 180
+module.exports = {
+    parser: '@typescript-eslint/parser',
+    plugins: ['@typescript-eslint/eslint-plugin'],
+    extends: [
+      'plugin:@typescript-eslint/recommended',
+      'plugin:prettier/recommended',
+      'plugin:import/errors',
+      'plugin:import/warnings',
+    ],
+    ignorePatterns: ['.eslintrc.js'],
+    rules: {
+      '@typescript-eslint/no-useless-constructor': 'off',
+      '@typescript-eslint/member-ordering': 'off',
+      '@typescript-eslint/no-empty-function': 'off',
+      '@typescript-eslint/no-empty-interface': 'error',
+      '@typescript-eslint/interface-name-prefix': 'off',
+      '@typescript-eslint/explicit-function-return-type': 'off',
+      '@typescript-eslint/explicit-module-boundary-types': 'off',
+      '@typescript-eslint/no-explicit-any': 'off',
+      '@typescript-eslint/no-namespace': 'off',
+      '@typescript-eslint/consistent-type-imports': ['error', {
+        fixStyle: 'inline-type-imports'
+      }],
+      '@typescript-eslint/ban-ts-comment': [
+        'error',
+        { 'ts-expect-error': 'allow-with-description',
+          'ts-ignore': false,
+        }
+      ],
+      'max-classes-per-file': [
+        'error',
+        1
+      ],
+      'max-len': [
+        'error',
+        {
+          'ignorePattern': '^import |^export |//',
+          'code': max_len
+        }
+      ],
+      'no-duplicate-case': 'error',
+      'prettier/prettier': ['error', { singleQuote: true, printWidth: max_len }],
+      'import/no-named-as-default-member': 'off',
+      'import/order': [
+        'error',
+        {
+          'groups': [
+            [
+              'builtin',
+              'external'
+            ],
+            [
+              'internal',
+              'index',
+              'sibling',
+              'parent',
+              'unknown'
+            ]
+          ],
+          'alphabetize': {
+            'order': 'asc',
+            'caseInsensitive': true
+          },
+          'newlines-between': 'always'
+        }
+      ]
+    },
+    settings: {
+      'import/resolver': {
+        typescript: {},
+      },
+    },
+  };
+
+
